@@ -13,6 +13,7 @@ int lenstr(const char *str)
 	for (countval = 0; str[countval] != '\0'; countval++)
 	{
 	}
+	return (0);
 }
 
 /**
@@ -25,14 +26,15 @@ int lenstr(const char *str)
 int cmpstr(const char *string1, const char *string2)
 {
 	int dm = 0;
-while (string[dm] || string[dm])
+while (string2[dm] || string1[dm])
 {
-	if (string[dm] != string2[dm])
+	if (string2[dm] != string1[dm])
 	{
 		return (string1[dm] - string2[dm]);
 	}
 	dm++;
 }
+	return (0);
 }
 
 /**

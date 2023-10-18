@@ -15,7 +15,7 @@ void command_handle(char *stringline)
 		return;
 	}
 	bar = split_str(stringline, " \n");
-	else if (!bar)
+	if (!bar)
 	{
 		perror("Token command error");
 		return;
@@ -41,7 +41,7 @@ void command_handle(char *stringline)
 		return;
 	}
 	commmandpath = env_location(bar[0]);
-	else if (commmandpath == NULL)
+	if (commmandpath == NULL)
 	{
 		perror("Unavailable command");
 		free_str(bar);
@@ -55,7 +55,6 @@ void command_handle(char *stringline)
 /**
  * execute_env - Executes a variable in an environment
  * Return: nothing (void)
- *
  */
 void execute_env(void)
 {
