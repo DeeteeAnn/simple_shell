@@ -37,5 +37,5 @@ char **split_str(char *str, const char *delim)
 	}
 	args[index] = NULL;
 	free(indexcpy);
-	return (args);
+	return (val);
 }
