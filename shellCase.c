@@ -4,12 +4,10 @@
   * main - this performs a program
   * Return: successful on 0
   */
-
 int main(void)
 {
 	char stringline[150];
 	ssize_t area;
-	
 
 	while (1)
 	{
@@ -21,6 +19,7 @@ int main(void)
 	if (area != -1)
 	{
 		char *newline = strchr(stringline, '\n');
+
 		if (newline != NULL)
 		{
 		*newline = '\0';
@@ -36,7 +35,6 @@ int main(void)
   * free_str - this frees space
   * @argstr: a value to pass
   */
-
 void free_str(char **argstr)
 {
 	int em = 0;
@@ -48,12 +46,11 @@ void free_str(char **argstr)
 	}
 	free(argstr);
 }
+
 /**
   * commandfork - copies a process
   * @argstr: acquires a value
   */
-
-
 void commandfork(char **argstr)
 {
 	pid_t num1 = fork();
@@ -63,7 +60,7 @@ void commandfork(char **argstr)
 		perror("Oops! this is a failed process");
 		exit(1);
 	}
-	 else if (!num1)
+	else if (!num1)
 	{
 		shell_exec(argstr);
 		exit(0);
@@ -72,5 +69,4 @@ void commandfork(char **argstr)
 	{
 		wait(NULL);
 	}
-
 }

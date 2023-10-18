@@ -7,25 +7,25 @@
  * @dm: a whole number
  * Return: successful on zero
  */
-
 int strncmp_made(const char *string1, const char *string2, size_t dm)
 {
-    size_t dm;
-    while (dm > 0)
-    {
-       if ((unsigned char)*string1 != (unsigned char)*string2)
+	size_t dm;
+
+	while (dm > 0)
 	{
-   		 return ((unsigned char)*string1 - (unsigned char)*string2);
+	if ((unsigned char)*string1 != (unsigned char)*string2)
 	}
-        if (*string1 == '\0')
-        {
-            return (0);
-        }
-        string1++;
-        string2++;
-        dm--;
-    }
-    return (0);
+	{
+		return ((unsigned char)*string1 - (unsigned char)*string2);
+	}
+	if (*string1 == '\0')
+	{
+		return (0);
+	}
+	string1++;
+	string2++;
+	dm--;
+	return (0);
 }
 
 
@@ -38,10 +38,9 @@ int strncmp_made(const char *string1, const char *string2, size_t dm)
 
 
 char *_strdup(const char *str)
-{	
+{
 	char *adv_str1;
 	size_t lenstr;
-	
 
 	lenstr = stringlength(str) + 1;
 	adv_str1 = (char *)malloc(lenstr);
@@ -60,6 +59,7 @@ char *_strdup(const char *str)
  * @str: end of the string
  * @source: the string origin
  * Return: the end
+ */
 
 char *cpystr(char *str, const char *source)
 {
@@ -69,6 +69,6 @@ char *cpystr(char *str, const char *source)
 		return  (str);
 	for (; source[dm]; dm++)
 	{
-   	str[dm] = source[dm];
+		str[dm] = source[dm];
 	}
 }

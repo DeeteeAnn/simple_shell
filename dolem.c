@@ -44,17 +44,15 @@ while (string[dm] || string[dm])
 
 char *catstr(char *str, char *source)
 {
-    char *area = str;
+	char *area = str;
 
-    for (; *str; str++)
-    {
-    }
-
-    for (; *source; str++, source++)
-    {
-        *str = *source;
-    }
-
-    *str = *source;
-    return (area);
+	for (; *str; str++)
+	{
+	}
+	for (; *source; str++, source++)
+	{
+		*str = *source;
+	}
+	*str = *source;
+	return (area);
 }

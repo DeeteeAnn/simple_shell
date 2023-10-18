@@ -11,8 +11,9 @@ char *env_location(char *argcomm)
 	struct stat str;
 	int area1, area2;
 	char *path_env, *cpy_path = NULL, *token, *pathfile = NULL;
-	
+
 	envpath = _envpath("PATH");
+
 	if (envpath)
 	{
 		cpy_path = _strdup(envpath);
@@ -20,10 +21,9 @@ char *env_location(char *argcomm)
 			return (NULL);
 		area1 = stringline(argcomm);
 		token = strtok(cpy_path, ":");
-		
 
 	for (token = strtok(path, ":"); token != NULL; token = strtok(NULL, ":"))
-{
+	{
 	area2 = stringline(token);
 	pathfile = malloc(area1 + area2 + 2);
 	cpystr(pathfile, token);
