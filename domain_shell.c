@@ -12,17 +12,17 @@ char *env_location(char *argcomm)
 	int area1, area2;
 	char *path_env, *cpy_path = NULL, *token, *pathfile = NULL;
 
-	envpath = _envpath("PATH");
+	path_env = _envpath("PATH");
 
-	if (envpath)
+	if (path_env)
 	{
-		cpy_path = _strdup(envpath);
+		cpy_path = _strdup(path_env);
 		if (cpy_path == NULL)
 			return (NULL);
 		area1 = stringline(argcomm);
 		token = strtok(cpy_path, ":");
 
-	for (token = strtok(path, ":"); token != NULL; token = strtok(NULL, ":"))
+	for (token = strtok(pathfile, ":"); token != NULL; token = strtok(NULL, ":"))
 	{
 	area2 = stringline(token);
 	pathfile = malloc(area1 + area2 + 2);

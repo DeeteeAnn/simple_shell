@@ -9,18 +9,16 @@
  */
 int strncmp_made(const char *string1, const char *string2, size_t dm)
 {
-	size_t dm;
-
 	while (dm > 0)
 	{
-	if ((unsigned char)*string1 != (unsigned char)*string2)
-	}
+		if ((unsigned char)*string1 != (unsigned char)*string2)
 	{
 		return ((unsigned char)*string1 - (unsigned char)*string2);
 	}
 	if (*string1 == '\0')
 	{
 		return (0);
+	}
 	}
 	string1++;
 	string2++;
@@ -42,7 +40,7 @@ char *_strdup(const char *str)
 	char *adv_str1;
 	size_t lenstr;
 
-	lenstr = stringlength(str) + 1;
+	lenstr = stringline(str) + 1;
 	adv_str1 = (char *)malloc(lenstr);
 	if (adv_str1 == NULL)
 	{
@@ -71,4 +69,5 @@ char *cpystr(char *str, const char *source)
 	{
 		str[dm] = source[dm];
 	}
+	return (str);
 }

@@ -31,11 +31,11 @@ char **split_str(char *str, const char *delim)
 	dm = 0;
 	while (indexarg != NULL)
 	{
-		args[dm] = _strdup(indexarg);
+		val[dm] = _strdup(indexarg);
 		indexarg = strtok(NULL, delim);
 		dm++;
 	}
-	args[index] = NULL;
+	val[index] = NULL;
 	free(indexcpy);
-	return (args);
+	return (val);
 }

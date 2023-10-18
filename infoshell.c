@@ -38,4 +38,20 @@ ssize_t _getline(char *band, size_t ptr)
 			memcpy(band, buff_line + ptrbuffer, len);
 			band[len] = '\0';
 			ptrbuffer = speed - buff_line + 1;
+			size += len + 1;
+			return (size);
+		}
+		dupe = (buffer_size - ptrbuffer < ptr - 1) ? buffer_size - ptrbuffer : ptr - 1;
+		memcpy(band, buff_line + ptrbuffer, dupe);
+		ptrbuffer += dupe;
+		band += dupe;
+		size += dupe;
+		if (dupe < ptr - 1)
+		{
+			*band = '\0';
+			return (size);
+		}
+	}
+	}
+	}
 }
