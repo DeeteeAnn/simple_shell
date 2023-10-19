@@ -4,27 +4,28 @@
   * main - this performs a program
   * Return: successful on 0
   */
+
 int main(void)
 {
-	char stringline[150];
-	ssize_t area;
+	char linestr[150];
+	ssize_t len;
 
 	while (1)
 	{
 
 	write(STDIN_FILENO, "$ ", 3);
 
-	area = _getline(stringline, sizeof(stringline));
+	len = _getline(linestr, sizeof(linestr));
 
-	if (area != -1)
+	if (area == -1)
 	{
-		char *newline = strchr(stringline, '\n');
+		char *newline = strchr(linestr, '\n');
 
 		if (newline != NULL)
 		{
 		*newline = '\0';
 		}
-	command_handle(stringline);
+	command_handle(linestr);
 	}
 	return (0);
 }
@@ -33,34 +34,36 @@ int main(void)
 
 /**
   * free_str - this frees space
-  * @argstr: a value to pass
+  * @strargs: a value to pass
   */
-void free_str(char **argstr)
+
+void free_str(char **strargs)
 {
-	int em = 0;
+	int j = 0;
 
-	while (argstr[em] != NULL)
+	while (strargs[j] != NULL)
 	{
-		free(argstr[em]);
-		em++;
+		free(strarg[j]);
+		j++;
 	}
-	free(argstr);
+	free(strargs);
 }
-
 /**
   * commandfork - copies a process
-  * @argstr: acquires a value
+  * @strargs: acquires a value
   */
-void commandfork(char **argstr)
-{
-	pid_t num1 = fork();
 
-	if (!(num1 != -1))
+
+void commandfork(char **strargs)
+{
+	pid_t first = fork();
+
+	if (!(first != -1))
 	{
 		perror("Oops! this is a failed process");
 		exit(1);
 	}
-	else if (!num1)
+	else if (!first)
 	{
 		shell_exec(argstr);
 		exit(0);
@@ -69,4 +72,5 @@ void commandfork(char **argstr)
 	{
 		wait(NULL);
 	}
+
 }

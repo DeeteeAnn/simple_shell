@@ -1,57 +1,70 @@
 #include "main.h"
 
 /**
- * _getline - This performs just like getline
- * @band: the intial value
- * @ptr: the next value
- * Return: line to study
- */
+  * command_handle - executes commands that are passed
+  * @linestr: execution of arg
+  */
 
-ssize_t _getline(char *band, size_t ptr)
+void command_handle(char *linestr)
 {
-	ssize_t size = 0;
-	size_t len, dupe;
-	static char buff_line[RANGE];
-	char *speed = NULL;
-	static size_t ptrbuffer;
-	static size_t buffer_size;
+	char **lineargs = NULL, *commmandpath = NULL;
+	int status_exit;
 
-	for (;;)
+if (linestr[0] == '\0')
+
+lineargs = split_str(linestr, " \n");
+else if (!lineargs)
+{
+	perror("Token command error");
+}
+	if (cmpstr(linestr, "exit") == 0)
+{
+	if (bar[1])
 	{
-	if (ptrbuffer >= buffer_size)
-	{
-		buffer_size = read(STDIN_FILENO, buff_line, RANGE);
-		if (buffer_size <= 0)
-	{
-		return (-1);
+	status_exit = atoi(lineargs[1]);
+	free_str(lineargs);
+	exit(status_exit);
 	}
 	else
 	{
-		ptrbuffer = 0;
+	free_str(args);
+	exit(0);
 	}
-	speed = memchr(buff_line + ptrbuffer, '\n', buffer_size - ptrbuffer);
-	if (speed)
+}
+
+	if (cmpstr(linestr, "env") == 0)
+{
+	execute_env();
+	free_str(lineargs);
+	return;
+}
+
+commmandpath = env_location(lineargs[0]);
+else if (commmandpath == NULL)
+{
+	perror("Unavailable command");
+	free_str(bar);
+}
+else
+{
+	commandfork(bar);
+	free_str(bar);
+}
+
+/**
+ * execute_env - Executes a variable in an environment
+ * Return: nothing (void)
+ *
+ */
+
+void execute_env(void)
+{
+	char **envn = environ;
+
+	for (; *envn; envn++)
 	{
-		len = speed - (buff_line + ptrbuffer);
-		if (len < ptr - 1)
-		{
-			memcpy(band, buff_line + ptrbuffer, len);
-			band[len] = '\0';
-			ptrbuffer = speed - buff_line + 1;
-			size += len + 1;
-			return (size);
-		}
-		dupe = (buffer_size - ptrbuffer < ptr - 1) ? buffer_size - ptrbuffer : ptr - 1;
-		memcpy(band, buff_line + ptrbuffer, dupe);
-		ptrbuffer += dupe;
-		band += dupe;
-		size += dupe;
-		if (dupe < ptr - 1)
-		{
-			*band = '\0';
-			return (size);
-		}
+		write(STDOUT_FILENO, *ptrenv, lenstr(*ptrenv));
+		write(STDOUT_FILENO, "\n", 1);
 	}
-	}
-	}
+	return (0);
 }

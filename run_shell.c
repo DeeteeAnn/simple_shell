@@ -2,19 +2,19 @@
 
 /**
  * shell_exec - makes a command effective
- * @args: acquires a command
+ * @argstr: acquires a command
  * Return: void(nothing)
  */
 
-void shell_exec(char **args)
+void shell_exec(char **argstr)
 {
-	char *order = NULL;
-	char *argstring = NULL;
+	char *command = NULL;
+	char *str_args = NULL;
 
-	argstring = args[0];
-	order = env_location(argstring);
+	str_args = argstr[0];
+	command = env_location(str_args);
 
-	if (execve(order, arg, NULL) == -1)
+	if (execve(command, argstr, NULL) == -1)
 	{
 		perror("sorry,unestablished command");
 		exit(1);

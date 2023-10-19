@@ -1,68 +1,55 @@
 #include "main.h"
 
 /**
-  * command_handle - executes commands that are passed
-  * @stringline: execution of arg
-  */
+ * _getline - This performs just like getline
+ * @line: the intial value
+ * @ptr: the next value
+ * Return: line to study
+ */
 
-void command_handle(char *stringline)
-	{
-	char **bar = NULL, *commmandpath = NULL;
-	int status_exit;
+ssize_t _getline(char *band, size_t ptr)
+{
+	ssize_t size = 0;
+	size_t length, copy;
+	static char line_buffer[RANGE];
+	char *braking = NULL;
+	static size_t ptrbuff;
+	static size_t size_buff;
 
-	if (stringline[0] == '\0')
+	for (;;)
 	{
-		return;
-	}
-	bar = split_str(stringline, " \n");
-	if (!bar)
+	if (ptrbuff >= size_buff) {
+        size_buff = read(STDIN_FILENO, line_buffer, RANGE);
+        if (size_buff <= 0)
 	{
-		perror("Token command error");
-		return;
-	}
-	else if (cmpstr(stringline, "exit") == 0)
-	{
-		if (bar[1])
-		{
-			status_exit = atoi(bar[1]);
-			free_str(bar);
-			exit(status_exit);
-		}
-		else
-		{
-			free_str(bar);
-			exit(0);
-		}
-	}
-	else if (cmpstr(stringline, "env") == 0)
-	{
-		execute_env();
-		free_str(bar);
-		return;
-	}
-	commmandpath = env_location(bar[0]);
-	if (commmandpath == NULL)
-	{
-		perror("Unavailable command");
-		free_str(bar);
+   		return (-1);
 	}
 	else
 	{
-		commandfork(bar);
-		free_str(bar);
-	}
-
-/**
- * execute_env - Executes a variable in an environment
- * Return: nothing (void)
- */
-void execute_env(void)
-{
-	char **ptrenv = environ;
-
-	for (; *ptrenv; ptrenv++)
+        ptrbuff = 0;
+   	}
+	braking = memchr(line_buffer + ptrbuff, '\n', size_buff - ptrbuff);
+	if (braking)
 	{
-		write(STDOUT_FILENO, *ptrenv, lenstr(*ptrenv));
-		write(STDOUT_FILENO, "\n", 1);
+        length = braking - (line_buffer + ptrbuff);
+        if (length < ptr - 1) {
+            memcpy(line, line_buffer + ptrbuff, length);
+            line[length] = '\0';
+            ptrbuff = braking - line_buffer + 1;
+		size += length + 1;
+		return (size);
+			}
+		}
+		copy = (size_buff - ptrbuff < ptr - 1) ? size_buff - ptrbuff : ptr - 1;
+		memcpy(line, line_buffer + ptrbuff, copy);
+		ptrbuffer += dupe;
+		line += copy;
+		size += copy;
+		if (copy < ptr - 1)
+		{
+			*line = '\0';
+			return (size);
+		}
 	}
+}
 }
