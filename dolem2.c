@@ -2,28 +2,30 @@
 
 /**
  * strncmp_made - compares three different values
- * @string1: the initial value
- * @string2: the sunsequent value
- * @dm: a whole number
+ * @st1: the initial value
+ * @st2: the sunsequent value
+ * @i: a whole number
  * Return: successful on zero
  */
-int strncmp_made(const char *string1, const char *string2, size_t dm)
+
+int strncmp_made(const char *st1, const char *st2, size_t i)
 {
-	while (dm > 0)
+    size_t i;
+    while (i > 0)
+    {
+       if (*st1 != *st2)
 	{
-		if ((unsigned char)*string1 != (unsigned char)*string2)
-	{
-		return ((unsigned char)*string1 - (unsigned char)*string2);
+   		 return (*st1 - *st2);
 	}
-	if (*string1 == '\0')
-	{
-		return (0);
-	}
-	}
-	string1++;
-	string2++;
-	dm--;
-	return (0);
+        if (*st1 == '\0')
+        {
+            return (0);
+        }
+        st1++;
+        st2++;
+        i--;
+    }
+    return (0);
 }
 
 
@@ -36,38 +38,37 @@ int strncmp_made(const char *string1, const char *string2, size_t dm)
 
 
 char *_strdup(const char *str)
-{
-	char *adv_str1;
-	size_t lenstr;
-
-	lenstr = stringline(str) + 1;
-	adv_str1 = (char *)malloc(lenstr);
-	if (adv_str1 == NULL)
+{	
+	char *new_str1;
+	size_t strlen1;
+	
+	strlen1 = lenstr(str) + 1;
+	new_str1 = (char *)malloc(strlen1);
+	if (new_str1 == NULL)
 	{
 		perror("Allocation mistake");
 		exit(98);
 	}
-	cpystr(adv_str1, str);
-	return (adv_str1);
+	cpystr(new_str1, str);
+	return (new_str1);
 }
 
 
 /**
  * cpystr - This reprints a string
  * @str: end of the string
- * @source: the string origin
+ * @src: the string origin
  * Return: the end
- */
 
-char *cpystr(char *str, const char *source)
+char *cpystr(char *str, const char *src)
 {
-	int dm = 0;
+	int i = 0;
 
-	if (str == source || source == NULL)
+	if (str == src || src == 0)
 		return  (str);
-	for (; source[dm]; dm++)
+	for (; src[i]; i++)
 	{
-		str[dm] = source[dm];
-	}
+   	str[i] = 0;
 	return (str);
+	}
 }

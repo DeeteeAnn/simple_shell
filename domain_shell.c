@@ -2,47 +2,45 @@
 
 /**
  * env_location - this gives details about a pathway
- * @argcomm: values to be used
+ * @command_args: values to be used
  * Return: the location of path is returned
  */
 
-char *env_location(char *argcomm)
+char *env_location(char *command_args)
 {
 	struct stat str;
-	int area1, area2;
-	char *path_env, *cpy_path = NULL, *token, *pathfile = NULL;
+	int len1, len2;
+	char *envpath, *token, *copypath = NULL, *filepath = NULL;
 
-	path_env = _envpath("PATH");
-
-	if (path_env)
+	envpath = _envpath("PATH");
+	if (envpath)
 	{
-		cpy_path = _strdup(path_env);
-		if (cpy_path == NULL)
+		copypath = _strdup(envpath);
+		if (copypath == NULL)
 			return (NULL);
-		area1 = stringline(argcomm);
-		token = strtok(cpy_path, ":");
-
-	for (token = strtok(pathfile, ":"); token != NULL; token = strtok(NULL, ":"))
+		len1 = lenstr(command_args);
+		token = strtok(copypath, ":");
+	for (token = strtok(path, ":"); token != NULL; token = strtok(NULL, ":"))
+{
+	area2 = lenstr(token);
+	filepath = malloc(len1 + len2 + 2);
+	cpystr(filepath, token);
+	catstr(filepath, "/");
+	catstr(filepath, command_args);
+	catstr(filepath, "\0");
+	if (stat(filepath, &str) == 0)
 	{
-	area2 = stringline(token);
-	pathfile = malloc(area1 + area2 + 2);
-	cpystr(pathfile, token);
-	catstr(pathfile, "/");
-	catstr(pathfile, argcomm);
-	catstr(pathfile, "\0");
-	if (stat(pathfile, &str) == 0)
-	{
-		free(cpy_path);
-		return (pathfile);
+		free(copypath);
+		return (filepath);
 	}
 	else
 	{
-		free(pathfile);
+		free(filepath);
 	}
 }
-		free(cpy_path);
-		if (stat(argcomm, &str) == 0)
-			return (argcomm);
+		free(copypath);
+		if (stat(command_args, &str) == 0)
+			return (command_args);
 		return (NULL);
 	}
 	return (NULL);

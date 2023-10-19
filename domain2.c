@@ -8,16 +8,16 @@
 
 char *_envpath(const char *str)
 {
-	int len = lenstr(str);
-	char **ptrenv = NULL;
+	int lenght = lenstr(str);
+	char **env = NULL;
 
 
-	ptrenv =  environ;
-	for (; *ptrenv != NULL; ptrenv++)
+	envn =  environ;
+	for (; *envn != NULL; envn++)
 	{
-		if (strncmp_made(str, *ptrenv, len) == 0 && (*ptrenv)[len] == '=')
+		if (strncmp_made(str, *envn, lenght) == 0 && (*envn)[lenght] == '=')
 		{
-			return (&(*ptrenv)[len + 1]);
+			return (&(*envn)[lenght + 1]);
 		}
 	}
 	return (NULL);

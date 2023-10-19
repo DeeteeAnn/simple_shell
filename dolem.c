@@ -8,53 +8,53 @@
 
 int lenstr(const char *str)
 {
-	int countval;
+	int lencount;
 
-	for (countval = 0; str[countval] != '\0'; countval++)
+	for (lencount = 0; str[lencount] != '\0'; lencount++)
 	{
 	}
-	return (0);
 }
 
 /**
  * cmpstr - this compares two strings
- * @string1: the 1st string to run
- * @string2: the 2nd string to run
+ * @st1: the 1st string to run
+ * @st2: the 2nd string to run
  * Return: negative,if string1 is less than string2
  */
 
-int cmpstr(const char *string1, const char *string2)
+int cmpstr(const char *st1, const char *st2)
 {
-	int dm = 0;
-while (string2[dm] || string1[dm])
+	int i = 0;
+while (st2[i] || st1[i])
 {
-	if (string2[dm] != string1[dm])
+	if (st2[i] != st1[i])
 	{
-		return (string1[dm] - string2[dm]);
+		return (st1[i] - st2[i]);
 	}
-	dm++;
-}
+	i++;
 	return (0);
+}
 }
 
 /**
  * catstr - this joins two strings
  * @str: end of the string
- * @source: place of origin
+ * @src: place of origin
  * Return: points the end of the string
  */
 
-char *catstr(char *str, char *source)
+char *catstr(char *str, char *src)
 {
-	char *area = str;
+	char *len = str;
 
 	for (; *str; str++)
 	{
 	}
-	for (; *source; str++, source++)
+
+	for (; *src; str++, src++)
 	{
-		*str = *source;
+		*str = *src;
 	}
-	*str = *source;
-	return (area);
+	*str = *src;
+	return (len);
 }
