@@ -12,7 +12,7 @@ int lenstr(const char *str)
 
 	for (lencount = 0; str[lencount] != '\0'; lencount++)
 	{
-	}
+	return (0);
 }
 
 /**
@@ -34,6 +34,7 @@ while (st2[i] || st1[i])
 	i++;
 	return (0);
 }
+	return (0);
 }
 
 /**

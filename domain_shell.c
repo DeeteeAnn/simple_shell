@@ -20,9 +20,9 @@ char *env_location(char *command_args)
 			return (NULL);
 		len1 = lenstr(command_args);
 		token = strtok(copypath, ":");
-	for (token = strtok(path, ":"); token != NULL; token = strtok(NULL, ":"))
+	for (token = strtok(filepath, ":"); token != NULL; token = strtok(NULL, ":"))
 {
-	area2 = lenstr(token);
+	len2 = lenstr(token);
 	filepath = malloc(len1 + len2 + 2);
 	cpystr(filepath, token);
 	catstr(filepath, "/");

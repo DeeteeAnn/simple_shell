@@ -16,7 +16,7 @@ char **split_str(char *str, const char *delim)
 	char *argtoken;
 
 	argtoken = strtok(str, delim);
-	for (; argtoken != null; argtoken = strtok(null, delim))
+	for (; argtoken != 0; argtoken = strtok(null, delim))
 	{
 		tokcount++;
 	}
@@ -27,7 +27,7 @@ char **split_str(char *str, const char *delim)
 		exit(98);
 	}
 	argtoken = strtok(argtokcpy, delim);
-	int i = 0;
+	i = 0;
 
 	while (argtoken != null)
 	{

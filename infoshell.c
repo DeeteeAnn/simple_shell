@@ -19,7 +19,7 @@ else if (!lineargs)
 }
 	if (cmpstr(linestr, "exit") == 0)
 {
-	if (bar[1])
+	if (lineargs[1])
 	{
 	status_exit = atoi(lineargs[1]);
 	free_str(lineargs);
@@ -27,7 +27,7 @@ else if (!lineargs)
 	}
 	else
 	{
-	free_str(args);
+	free_str(lineargs);
 	exit(0);
 	}
 }
@@ -40,15 +40,15 @@ else if (!lineargs)
 }
 
 commmandpath = env_location(lineargs[0]);
-else if (commmandpath == NULL)
+if (commmandpath == NULL)
 {
 	perror("Unavailable command");
-	free_str(bar);
+	free_str(lineargs);
 }
 else
 {
-	commandfork(bar);
-	free_str(bar);
+	commandfork(lineargs);
+	free_str(lineargs);
 }
 
 /**
@@ -63,8 +63,7 @@ void execute_env(void)
 
 	for (; *envn; envn++)
 	{
-		write(STDOUT_FILENO, *ptrenv, lenstr(*ptrenv));
+		write(STDOUT_FILENO, *envn, lenstr(*envn));
 		write(STDOUT_FILENO, "\n", 1);
 	}
-	return (0);
 }

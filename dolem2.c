@@ -10,7 +10,6 @@
 
 int strncmp_made(const char *st1, const char *st2, size_t i)
 {
-    size_t i;
     while (i > 0)
     {
        if (*st1 != *st2)
@@ -59,6 +58,7 @@ char *_strdup(const char *str)
  * @str: end of the string
  * @src: the string origin
  * Return: the end
+ */
 
 char *cpystr(char *str, const char *src)
 {

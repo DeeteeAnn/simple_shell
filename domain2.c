@@ -9,7 +9,7 @@
 char *_envpath(const char *str)
 {
 	int lenght = lenstr(str);
-	char **env = NULL;
+	char **envn = NULL;
 
 
 	envn =  environ;
