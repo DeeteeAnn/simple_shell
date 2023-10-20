@@ -7,7 +7,7 @@
  * Return: line to study
  */
 
-ssize_t _getline(char *band, size_t ptr)
+ssize_t _getline(char *line, size_t ptr)
 {
 	ssize_t size = 0;
 	size_t length, copy;
@@ -42,7 +42,7 @@ ssize_t _getline(char *band, size_t ptr)
 		}
 		copy = (size_buff - ptrbuff < ptr - 1) ? size_buff - ptrbuff : ptr - 1;
 		memcpy(line, line_buffer + ptrbuff, copy);
-		ptrbuffer += dupe;
+		ptrbuff += copy;
 		line += copy;
 		size += copy;
 		if (copy < ptr - 1)

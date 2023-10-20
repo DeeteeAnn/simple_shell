@@ -17,7 +17,7 @@ int main(void)
 
 	len = _getline(linestr, sizeof(linestr));
 
-	if (area == -1)
+	if (len == -1)
 	{
 		char *newline = strchr(linestr, '\n');
 
@@ -43,7 +43,7 @@ void free_str(char **strargs)
 
 	while (strargs[j] != NULL)
 	{
-		free(strarg[j]);
+		free(strargs[j]);
 		j++;
 	}
 	free(strargs);
@@ -65,7 +65,7 @@ void commandfork(char **strargs)
 	}
 	else if (!first)
 	{
-		shell_exec(argstr);
+		shell_exec(strargs);
 		exit(0);
 	}
 	else
